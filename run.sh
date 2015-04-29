@@ -68,8 +68,8 @@ Install ()
 Run ()
 {
     Install -g http-server
-    printf "$(tput setaf 7)⇒$(tput sgr0) Change directory %s\n" $absdir; cd $absdir
-    printf "$(tput setaf 6)→$(tput sgr0) "
+    printf "%s Change directory %s\n" $(Pprint 7 '⇒') $absdir; cd $absdir
+    printf "%s " $(Pprint 6 '→')
     http-server $folder
 }
 
