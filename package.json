@@ -1,0 +1,35 @@
+{
+  "name": "xonomy-xmleditor",
+  "version": "0.1.0",
+  "description": "Copy from original work http://www.lexiconista.com/xonomy/",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "bower": "^1.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robjens/xonomy.git"
+  },
+  "keywords": [
+    "xml",
+    "visual",
+    "editor",
+    "tree",
+    "inline",
+    "validate",
+    "xsd"
+  ],
+  "author": "Michal Boleslav Měchura",
+  "license": "Creative Commons Attribution 4.0 International License",
+  "bugs": {
+    "url": "https://github.com/robjens/xonomy/issues"
+  },
+  "homepage": "https://github.com/robjens/xonomy#readme"
+}

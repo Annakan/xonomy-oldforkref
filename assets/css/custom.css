@@ -1,0 +1,43 @@
+/*
+ * custom.css
+ * Copyright (C) 2015 susy
+ *
+ * Distributed under terms of the MIT license.
+ */
+.envelope {
+    display: block;
+}
+#editor {
+    font-size: 11px;
+}
+#count {
+    height: 10px;
+}
+code {
+    font-family: 'MS Trebuchet', 'Trebuchet', 'Verdana', sans-serif;
+    font-size: 10px;
+    border: 3px solid #cccccc;
+    width: 724px;
+    height: 300px;
+    padding: 10px 0 0;
+    margin: 0 auto;
+}
+.cleartext > .overtitle {
+    margin: 0 auto;
+    text-align: center;
+}
+textarea#ta {
+    position: relative;
+    outline: none;
+    resize: none;
+    /*background-image: url(bg.gif);*/
+    /*background-position: bottom right;*/
+    /*background-repeat: no-repeat;*/
+}
+
+
+div.cleartext {
+    text-align: left;
+    /*padding: 0 !important;*/
+}
+

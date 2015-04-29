@@ -1,0 +1,13 @@
+body {background-color: #FFFFFF; padding: 0px; margin: 0px; }
+img {border: 0px;}
+a {color: #05296E; text-decoration: none;}
+a:hover {color: #1144AA;}
+
+.siteheader { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 0.8em; box-shadow: 0px 0px 3px #000000; background-color: #003466; position: relative; z-index: 20; }
+.siteheader > .inside { width: 900px; margin: 0px auto; padding: 10px 0px; }
+.siteheader > .inside > .clear { clear: both; }
+.siteheader > .inside > a { float: left; color: #dddddd; display: block; padding: 3px 10px; border: 1px; border-radius: 2px; }
+.siteheader > .inside > a:hover { color: #ffffff; }
+.siteheader > .inside > a.current { background-color: #dddddd; border-color: #666666; color: #003466; margin-right: 10px; margin-left: 10px;  }
+.siteheader > .inside > a.home { width: 6px; background-image: url(/home.png); background-position: 5px 4px; background-repeat: no-repeat; margin-left: 3px; }
+.siteheader > .inside > a.home.current { background-color: #bbbbbb; }

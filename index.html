@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Xonomy</title>
+
+	<meta name="title" content="Xonomy" />
+	<meta name="description" content="A web-based, schema-driven XML editor." />
+	<meta name="keywords" content="web-based XML editor, structured authoring, WYSIWYM, What You See Is What You Meant, schema-driven, content authoring, real-time schema validation, " />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/template.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/xonomy.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+	
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/xonomy.js"></script>
+	<script type="text/javascript" src="assets/js/vkbeautify.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/languages/xml.min.js"></script>
+
+
+	<script type="text/javascript">
+
+
+        /**
+         * Count characters in plain text XML dump
+         */
+        function countChars(el) {
+            var charCount = $(el).text().length;
+            $('#count').value = $(el).text().length;
+            console.log($(el).text().length);
+            //document.getElementById('count').value = document.getElementById(el).value.length;
+        }
+    
+        /**
+         * Beautify (pretty print / format) XML (but can also handle JSON, SQL and such)
+         */
+        function beautify(el, cp) {
+    
+            // if no argument element string passed, fallback to #ta
+            var ele = (el === null || el === undefined)
+                ? '#ta' : el ;
+
+            // ensure we can parse the optional indent level integer or string
+            if (!isNaN(parseInt(cp)) ) {
+                cp = parseInt(cp);
+            } else {
+                cp = cp ? cp : 4;
+            }
+
+            // set textarea pretty printed xml (default 4 spaces indent)
+            var indent = vkbeautify.xml(Xonomy.harvest(), cp);
+
+            // TODO: fix the bloody escape string
+            $(ele).text(indent);
+            $(ele).attr('contenteditable', true);
+            
+            countChars(ele);
+        }
+    
+        /**
+         * Allows to toggle different view modes of the XML tree control
+         */
+    	function setEditor(what) {
+
+    		$(".setter").removeClass("current");
+
+            // set editor
+    		var editor = document.getElementById("editor");
+
+            // conditional branching
+            switch (what) {
+                case 'school':
+    			    var xml = schoolXml, spec = schoolSpec;
+    			    $("#setterSchool").addClass("current");
+                    break;
+
+                case 'article':
+    			    var xml = articleXml, spec = articleSpec;
+    			    $("#setterArticle").addClass("current");
+                    break;
+    		}
+
+            // render tree using data source, editor and spec
+    		Xonomy.render(xml, editor, spec);
+    	}
+
+        // on document ready, clear textarea (not done automatically)
+        $(document).ready(function () {
+            //document.getElementById('ta').value = "";
+            $('#tata').attr('contenteditable', false);
+        });
+
+        
+
+	</script>
+	
+</head>
+
+<body onload="setEditor('school')">
+
+
+<div class="envelope">
+	<div class="intro">
+		<h1>Xonomy</h1>
+		<div class="blurb">A web-based, schema-driven XML editor</div>
+		<div class="version">version 1.2</div>
+	</div>
+	<div class="menu">
+	</div>
+	<div class="setters">
+		<a href="javascript:setEditor('school')" class="setter" id="setterSchool">school</a>
+		<a href="javascript:setEditor('article')" class="setter" id="setterArticle">document</a>
+	</div>
+	<div class="editorContainer" oncontextmenu="return false;">
+		<div id="editor"></div>
+	</div>
+	<div class="submitters">
+		<button class="submitter" onclick="beautify('#tata')">plain text</button>
+	</div>
+	<div class="description">
+		<p>
+		</p>
+	</div>
+    <div class="cleartext">
+	    <div class="overtitle">SOURCE TREE (char count <input type="text" size="5" id="count">)</div>
+        <pre class="prettyprint">
+            <!--<textarea id="ta" class="hljs xml language-xml" onclick="countChars()"></textarea>-->
+            <code id="tata" contenteditable="true" class="hljs xml language-xml"></code>
+        </pre>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="footer">
+        <!-- original author credits -->
+		&copy; <a href="/">Michal Boleslav Měchura</a>, 2014-2015<br/>
+		The Xonomy software is available under a <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
+	</div>
+</div>
+
+    <!-- Non-blocking scripts (possibly asynchronous) -->
+	<script type="text/javascript" src="examples/school.js"></script>
+
+</body>
+</html>
+
+<!--function setBg(color) { document.getElementById("ta").style.background=color }-->
