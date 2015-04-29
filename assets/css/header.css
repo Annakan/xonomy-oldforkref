@@ -8,6 +8,4 @@ a:hover {color: #1144AA;}
 .siteheader > .inside > .clear { clear: both; }
 .siteheader > .inside > a { float: left; color: #dddddd; display: block; padding: 3px 10px; border: 1px; border-radius: 2px; }
 .siteheader > .inside > a:hover { color: #ffffff; }
-.siteheader > .inside > a.current { background-color: #dddddd; border-color: #666666; color: #003466; margin-right: 10px; margin-left: 10px;  }
-.siteheader > .inside > a.home { width: 6px; background-image: url(/home.png); background-position: 5px 4px; background-repeat: no-repeat; margin-left: 3px; }
-.siteheader > .inside > a.home.current { background-color: #bbbbbb; }
+.siteheader > .inside > a.current { background-color: #dddddd; border-color: #666666; color: #003466; margin-right: 10px; margin-left: 10px; }

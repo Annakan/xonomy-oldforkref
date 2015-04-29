@@ -14,7 +14,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
-	
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 	<script type="text/javascript" src="assets/js/xonomy.js"></script>
@@ -26,6 +27,9 @@
 
 	<script type="text/javascript">
 
+        function toggle(state) {
+            $('.fa-pencil-square').hide();
+        }
 
         /**
          * Count characters in plain text XML dump
@@ -40,27 +44,16 @@
         /**
          * Beautify (pretty print / format) XML (but can also handle JSON, SQL and such)
          */
-        function beautify(el, cp) {
+        function beautify() {
     
-            // if no argument element string passed, fallback to #ta
-            var ele = (el === null || el === undefined)
-                ? '#ta' : el ;
-
-            // ensure we can parse the optional indent level integer or string
-            if (!isNaN(parseInt(cp)) ) {
-                cp = parseInt(cp);
-            } else {
-                cp = cp ? cp : 4;
-            }
-
-            // set textarea pretty printed xml (default 4 spaces indent)
-            var indent = vkbeautify.xml(Xonomy.harvest(), cp);
+            // set textarea pretty printed xml (const 4 spaces)
+            var indent = vkbeautify.xml(Xonomy.harvest(), 4);
 
             // TODO: fix the bloody escape string
-            $(ele).text(indent);
-            $(ele).attr('contenteditable', true);
+            $('#codepad').text(indent);
+            $('#codepad').attr('contenteditable', true);
             
-            countChars(ele);
+            countChars('#codepad');
         }
     
         /**
@@ -90,10 +83,40 @@
     		Xonomy.render(xml, editor, spec);
     	}
 
-        // on document ready, clear textarea (not done automatically)
-        $(document).ready(function () {
-            //document.getElementById('ta').value = "";
-            $('#tata').attr('contenteditable', false);
+        function parseTree() {
+            $('#codepad').show();
+            $('#codepad').attr('contenteditable', true);
+            $('.fa-lock').show();
+            $('.fa-eye-slash').show();
+            beautify();
+        }
+        // boot up
+        $(function () {
+            //TODO: slide in
+            $('#codepad').attr('contenteditable', false);
+
+            // event hooks
+            $('.fa-unlock').click(function () {
+                $('#codepad').attr('contenteditable', true);
+                $('.fa-lock').show();
+                $(this).hide();
+            });
+
+            $('.fa-lock').click(function () {
+                $('#codepad').attr('contenteditable', false);
+                $('.fa-unlock').show();
+                $(this).hide();
+            });
+
+
+            $('.fa-code').click(function () {
+                parseTree();   
+            });
+
+            $('.fa-eye-slash').hide();
+            $('.fa-unlock').hide();
+            $('.fa-lock').hide();
+            $('#codepad').hide();
         });
 
         
@@ -114,24 +137,29 @@
 	<div class="menu">
 	</div>
 	<div class="setters">
-		<a href="javascript:setEditor('school')" class="setter" id="setterSchool">school</a>
-		<a href="javascript:setEditor('article')" class="setter" id="setterArticle">document</a>
+        <a href="javascript:setEditor('school')" class="setter" id="setterSchool"><i class="fa fa-sitemap fa-2"></i></a>
+        <a href="javascript:setEditor('article')" class="setter" id="setterArticle"><i class="fa fa-file-code-o fa-2"></i></a>
 	</div>
 	<div class="editorContainer" oncontextmenu="return false;">
 		<div id="editor"></div>
 	</div>
+
 	<div class="submitters">
-		<button class="submitter" onclick="beautify('#tata')">plain text</button>
+        <input type="text" size="5" id="count">
+        <i class="fa fa-unlock fa-3"></i>
+        <i class="fa fa-lock fa-3"></i>
+        <i class="fa fa-eye-slash fa-3"></i>
+        <i class="fa fa-code fa-3"></i>
 	</div>
 	<div class="description">
 		<p>
 		</p>
 	</div>
+
     <div class="cleartext">
-	    <div class="overtitle">SOURCE TREE (char count <input type="text" size="5" id="count">)</div>
         <pre class="prettyprint">
             <!--<textarea id="ta" class="hljs xml language-xml" onclick="countChars()"></textarea>-->
-            <code id="tata" contenteditable="true" class="hljs xml language-xml"></code>
+            <code id="codepad" contenteditable="true" class="hljs xml language-xml"></code>
         </pre>
 		</div>
 		<div class="clear"></div>
@@ -139,7 +167,7 @@
 
 	<div class="footer">
         <!-- original author credits -->
-		&copy; <a href="/">Michal Boleslav Měchura</a>, 2014-2015<br/>
+		2014-2015 &copy; <a href="/">Michal Boleslav Měchura</a><br/>
 		The Xonomy software is available under a <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
 	</div>
 </div>

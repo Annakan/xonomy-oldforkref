@@ -1,8 +1,9 @@
 
-var schoolXml='<school name="Saint Tibulus\'s National School"><teachers><person name="Clara O\'Lara" sex="f"/><person name="Billybob Smythe" sex="m"/></teachers><students><person name="Mish Vargo" sex="f"/><person name="Iwanna Beer" sex="f"/><person name="Vern Lorn" sex="m"/><person name="Charlie McGillycuddy" sex="m" age="-8.5"/></students></school>';
-var schoolSpec={
-    onchange: function(){
+var schoolXml = '<school name="Saint Tibulus\'s National School"><teachers><person name="Clara O\'Lara" sex="f"/><person name="Billybob Smythe" sex="m"/></teachers><students><person name="Mish Vargo" sex="f"/><person name="Iwanna Beer" sex="f"/><person name="Vern Lorn" sex="m"/><person name="Charlie McGillycuddy" sex="m" age="-8.5"/></students></school>';
+var schoolSpec = {
+    onchange: function () {
         //console.log("Ah been chaaanged!");
+        parseTree();
     },
     validate: function(jsElement){
         if(typeof(jsElement)=="string") jsElement=Xonomy.xml2js(jsElement);

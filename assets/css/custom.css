@@ -8,6 +8,9 @@
     display: block;
 }
 #editor {
+    clear: both;
+    display: block;
+    overflow: hidden;
     font-size: 11px;
 }
 #count {
@@ -26,18 +29,31 @@ code {
     margin: 0 auto;
     text-align: center;
 }
-textarea#ta {
-    position: relative;
-    outline: none;
-    resize: none;
-    /*background-image: url(bg.gif);*/
-    /*background-position: bottom right;*/
-    /*background-repeat: no-repeat;*/
-}
-
 
 div.cleartext {
     text-align: left;
-    /*padding: 0 !important;*/
+}
+
+i.fa {
+    cursor: pointer;
+}
+
+.fa-2 {
+    font-size: 2em !important;
+    margin: 2px;
+    height: 23px;
+}
+
+.fa-3 {
+    font-size: 3em !important;
+    margin: 5px;
+}
+.setters { height: 30px; }
+.setter {
+    display: block !important;
+    width: 40px;
+    float: left;
+    text-align: center;
+    padding: 15px 0 0 0;
 }
 
